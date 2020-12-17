@@ -1,0 +1,130 @@
+@include mediaXl {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@include mediaLg {
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+
+    .fa-caret-square-down {
+      margin-left: 35px;
+    }
+  }
+
+  #history {
+    grid-template-areas:
+      'job1 job2 '
+      'job3 job3';
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  header .menu-toggler {
+    top: 35px;
+    left: 35px;
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+@include mediaMd {
+  header .menu-toggler {
+    top: 35px;
+    left: 35px;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  main {
+    align-items: center;
+    text-align: center;
+
+    .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-size: 5rem;
+    }
+    &#home,
+    &#contact {
+      .lg-heading {
+        font-size: 4.5rem;
+      }
+    }
+  }
+
+  ul.menu-nav,
+  div.menu-branding {
+    // float: none;
+    width: 100%;
+    min-height: 0;
+
+    &.show {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px;
+  }
+
+  .menu-branding {
+    height: 25vh;
+    transform: translate3d(100%, 0, 0);
+
+    .portrait {
+      background: url(../img/portrait_small.jpg);
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .about-info {
+    grid-template-areas:
+      'bioimage'
+      'bio'
+      'job1'
+      'job2'
+      'job3';
+
+    grid-template-columns: 1fr;
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+
+    .fa-caret-square-down {
+      margin-left: 35px;
+    }
+  }
+}
+
+@include mediaSm {
+  .projects {
+    grid-template-columns: 1fr;
+  }
+  #home {
+    .type-effect {
+      display: block;
+    }
+  }
+  main {
+    &#contact {
+      div {
+        font-size: 1.4rem;
+        padding: 1.2rem;
+        &:hover {
+          padding: 1.6rem;
+        }
+      }
+      .lg-heading {
+        font-size: 3.5rem;
+      }
+      .type-effect {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,283 @@
+//                      EXAMPLE 1
+// Variables
+$color-white: #fff;
+$primary-color: #444;
+$secondary-color: #eece1a;
+
+// @function set-text-color($color) {
+//   @if (lightness($color) > 40) {
+//     @return #000;
+//   } @else {
+//     @return #fff;
+//   }
+// }
+
+$themes: (
+  light: (
+    primary-color: lighten($primary-color, 50),
+    color-beta: black,
+  ),
+  dark: (
+    primary-color: $primary-color,
+    color-beta: $color-white,
+  ),
+);
+
+// Styles
+// body {
+//   width: 100%;
+//   height: 100vh;
+//   font-size: 100%;
+//   font-family: Arial, Verana, Helvetica;
+//     .highlight {
+//         color: $secondary-color;
+//     }
+//     .box {
+//         width: 400px;
+//         height: 400px;
+//         background: $primary-color;
+
+//     }
+//     .themeselect {
+//     display: block;
+//     padding: 2rem;
+//     // color: $color-white;
+//     // background: $color-alpha
+//     }
+//     .menu-toggler {
+//     position: absolute;
+//     right: 100px;
+//     bottom: 100px;
+//     z-index: 3;
+//     cursor: pointer;
+//     &.on {
+//       transform: rotate(180deg);
+//       //   color: set-text-color($primary-color);
+//     }
+//     }
+
+//   .overlay {
+//     // background: blue;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
+// .component {
+//   // background-color: $color-alpha;
+//   // color: $color-white;
+// //   display: inline-block;
+// //   padding: 10px;
+// //   background-color: blue;
+// }
+
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+
+  @if $value != null {
+    @if $length > 1 {
+      $rest: ();
+
+      @for $i from 2 through $length {
+        $rest: append($rest, nth($keys, $i));
+      }
+
+      @return map-fetch($value, $rest);
+    } @else {
+      @return $value;
+    }
+  } @else {
+    @return false;
+  }
+}
+
+@function getThemifyVariable($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    .#{$theme} & {
+      // Define theme color
+      $theme-map: (
+        primary-color: #444,
+      ) !global;
+
+      @each $key, $submap in $map {
+        $value: map-fetch($themes, $theme "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+
+      @content;
+
+      // reset theme color to null
+      $theme-map: null !global;
+    }
+  }
+}
+
+//
+// USAGE
+//
+// .box {
+//     @include themify() {
+//         background-color: darken(set-text-color(getThemifyVariable("primary-color")),50);
+//         color: set-text-color(getThemifyVariable("color-beta"));
+//         }
+// }
+
+// .component,
+// .overlay,
+// .themeselect {
+//   @include themify() {
+//     background-color: getThemifyVariable("primary-color");
+//     color: getThemifyVariable("color-beta");
+//   }
+// }
+
+//          EXAMPLE 2
+//
+
+// @mixin flex {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }
+
+// $light-theme: false !default;
+// $primary-color: #444;
+
+// @if $light-theme {
+//     $primary-color: #fff;
+// }
+// @mixin easeOut {
+//   transition: all 0.5s ease-out;
+// }
+// @mixin hoverOver {
+//   &:hover {
+//     color: red;
+//   }
+// }
+
+// @function set-text-color($color) {
+//   @if (lightness($color) > 40) {
+//     @return #000;
+//   } @else {
+//     @return #fff;
+//   }
+// }
+
+// @mixin themify {
+
+//     $light-theme: true;
+//     @if $light-theme {
+//         $primary-color: #fff;
+//         background-color: $primary-color;
+//         color: set-text-color($primary-color);
+//     } @else {
+//         $primary-color: #444;
+//         background-color: $primary-color;
+//         color: set-text-color($primary-color);
+//     }
+
+//     // @if $light-theme == false {
+//     //     $primary-color: #444;
+//     //     background-color: $primary-color;
+//     //     color: set-text-color($primary-color);
+//     //   }
+
+// }
+
+// .menu-toggler {
+//   position: absolute;
+//   right: 35px;
+//   bottom: -750px;
+//   z-index: 3;
+//   cursor: pointer;
+//   @include easeOut;
+//   @include hoverOver;
+//   &.on {
+//     transform: rotate(180deg);
+//     //   color: set-text-color($primary-color);
+//   }
+// }
+// #menu1 {
+//   .menu-toggler {
+//     right: 100px;
+//     bottom: 100px;
+//   }
+// }
+
+// .inner {
+//   padding: 30px;
+// //   @include themify;
+//     background-color: darken($primary-color,20);
+//     color: set-text-color($primary-color);
+// }
+
+// $vars: (
+//   primary: #444,
+//   secondary: #fff,
+// );
+
+// @mixin var($property, $varName) {
+//   #{$property}: map-get($vars, $varName);
+//   #{$property}: var(--#{$varName}, map-get($vars, $varName));
+// }
+
+// body {
+//   width: 100%;
+//   height: 100vh;
+//   --primary: lighten(#{map-get($vars, primary)}, 50);
+// }
+
+// #work {
+//   @include flex;
+//   // @include var(background-color, primary);
+//   width: 100%;
+//   height: 100%;
+//   p,
+//   h1 {
+//     //   @if $dark-theme {
+//     //       color: set-text-color(map-get($vars, "primary" ))
+//     //   }
+//     // @include var(color, primary);
+//   }
+// }
+// // body.on .inner {
+// //     @include var(color, secondary);
+// // }
+// // body.on .paragraph,
+// // body.on h1  {
+// //     $dark-theme: true;
+// //     @if $dark-theme {
+
+// //         color: set-text-color(map-get($vars, "primary" ))
+// //     }
+// // }
+
+// // body {
+// //     &.on {
+// //         #work,
+// //         h1,
+// //         .icons {
+// //             $primary-color: lighten($primary-color, 70);
+// //             background: $primary-color;
+// //             color: set-text-color($primary-color);
+// //         }
+// //         .sm-heading {
+// //             // $primary-color: lighten($primary-color ,50);
+
+// //             // background: rgba(darken($primary-color,4), 0.5)
+// //         }
+
+// //     }
+// // }

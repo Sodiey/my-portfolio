@@ -1,0 +1,396 @@
+@import 'config';
+@import 'menu';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @include background;
+  min-height: 100vh;
+  max-height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+main,
+header {
+  @include themify() {
+    color: set-text-color(getThemifyVariable('primary-color'));
+  }
+}
+.overlay {
+  @include themify() {
+    $bgEffect1: rgba(getThemifyVariable('primary-color'), $background-opacity);
+    $bgEffect2: rgba(darken(getThemifyVariable('primary-color'), 30), 0.4);
+    // $bgEffect2: rgba(lighten(getThemifyVariable("primary-color"), 1), 0.4);
+
+    background: radial-gradient(
+      circle at var(--x) var(--y),
+      $bgEffect2 0%,
+      $bgEffect1 100%
+    );
+  }
+  width: 100%;
+  min-height: 100vh;
+}
+
+.menu-title {
+  position: absolute;
+  font-size: 1.3rem;
+  top: 7px;
+  letter-spacing: 2px;
+  right: 75px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 400;
+  position: relative;
+  pointer-events: none;
+
+  &.lg-heading {
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    pointer-events: none;
+    @include themify() {
+      background: rgba(lighten(getThemifyVariable('primary-color'), 4), 0.5);
+    }
+  }
+}
+
+a {
+  @include themify() {
+    color: set-text-color(getThemifyVariable('primary-color'));
+  }
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  padding: 3rem;
+  // height: 100%;
+  min-height: calc(100vh - 60px);
+
+  .icons {
+    margin-top: 1rem;
+    position: relative;
+
+    a {
+      padding: 0.4rem;
+      @include hoverOver;
+      @include easeOut;
+    }
+  }
+
+  &#home {
+    overflow: hidden;
+    h1 {
+      margin-top: 20vh;
+    }
+  }
+}
+
+.bg-fallback {
+  @include themify() {
+    background-color: rgba(getThemifyVariable('primary-color'), 0.2);
+  }
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+
+// ABOUT PAGE
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    'bioimage bio bio'
+    'job1 job2 job3';
+  grid-template-columns: repeat(3, 1fr);
+
+  .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: $secondary-color 3px solid;
+  }
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+
+    h4 {
+      @include themify() {
+        color: getThemifyVariable('secondary-color');
+      }
+      // color: $secondary-color
+    }
+  }
+
+  .skills {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    @include themify() {
+      color: getThemifyVariable('color-beta');
+    }
+    display: flex;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+  .job-2 {
+    grid-area: job2;
+  }
+  .job-3 {
+    grid-area: job3;
+  }
+
+  .job {
+    @include themify() {
+      // background: lighten(getThemifyVariable("primary-color"), 5);
+      background: rgba(lighten(getThemifyVariable('primary-color'), 4), 0.9);
+    }
+    border-radius: 20px;
+    border-bottom: $secondary-color 5px solid;
+
+    .job-header {
+      padding: 1.4rem 1.4rem 0 1.4rem;
+    }
+
+    .job-company {
+      font-weight: 600;
+      font-family: 'Poppins';
+    }
+
+    .job-title {
+      letter-spacing: 2px;
+      margin: 5px;
+      color: #d5bf42;
+      font-size: 0.8rem;
+    }
+
+    .job-description {
+      font-family: 'Poppins';
+    }
+
+    .job-body {
+      padding: 0.2rem 1.9rem;
+      margin-bottom: 0.9rem;
+      border-bottom-left-radius: 20px;
+      border-top-right-radius: 20px;
+      font-family: 'Roboto';
+      @include themify() {
+        // background: lighten(getThemifyVariable("primary-color"), 5);
+        background: getThemifyVariable('accent-color');
+        color: getThemifyVariable('primary-color');
+      }
+    }
+  }
+}
+
+// WORK PAGE
+
+.bg-fallback {
+  @include themify() {
+    background-color: rgba(getThemifyVariable('primary-color'), 0.9);
+  }
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.7rem;
+
+  img {
+    width: 100%;
+    min-height: 292px;
+    border: 3px solid $color-white;
+
+    &:hover {
+      opacity: 0.6;
+      border-color: $secondary-color;
+      transform: scale(1.01);
+      @include easeOut;
+    }
+  }
+
+  .figure {
+    position: relative;
+
+    button {
+      opacity: 0;
+      font-size: 1.3rem;
+      position: absolute;
+      left: 50%;
+      top: 90%;
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      pointer-events: none;
+      text-align: center;
+
+      border: 1px solid $secondary-color;
+      border-radius: 20px;
+
+      transform: translate(-50%, -100%);
+      i {
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+  .figure:hover button {
+    opacity: 0.9;
+    background-color: $secondary-color;
+
+    transition: all 0.8s ease-out;
+  }
+
+  .fa-caret-square-down {
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
+// Button Styles
+.btn {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+  position: relative;
+  cursor: pointer;
+
+  .fas,
+  .fab {
+    margin-right: 0.3rem;
+    font-size: 1.1rem;
+  }
+}
+
+.btn-dark {
+  @extend .btn;
+  @include themify() {
+    background: darken(getThemifyVariable('primary-color'), 50);
+    color: lighten(getThemifyVariable('btn-color'), 100);
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.btn-light {
+  @extend .btn;
+  @include themify() {
+    background: lighten(getThemifyVariable('primary-color'), 55);
+    color: darken(getThemifyVariable('btn-color'), 100);
+    &:hover {
+      background: lighten(getThemifyVariable('primary-color'), 100);
+    }
+  }
+
+  p {
+    display: none;
+    font-size: 0.95rem;
+  }
+
+  &.menu-active {
+    p {
+      display: block;
+      animation: blink 0.8fs ease;
+    }
+  }
+}
+
+// CONTACT PAGE
+
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    @include themify() {
+      // @include easeOut;
+      border: 3px solid set-text-color(getThemifyVariable('primary-color'));
+    }
+    font-size: 2rem;
+    border: 3px solid #fff;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    margin-right: 1rem;
+    @include easeOut;
+
+    &:hover {
+      padding: 0.5rem 1.5rem;
+      background: $secondary-color;
+      color: set-text-color($secondary-color);
+
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+
+// FOOTER
+#main-footer {
+  @include themify() {
+    background: darken(getThemifyVariable('primary-color'), 10);
+    color: set-text-color(getThemifyVariable('primary-color'));
+  }
+  height: 60px;
+  text-align: center;
+  padding: 1rem;
+}
+
+// TYPE EFFECT
+
+.type-effect {
+  &:after {
+    content: '';
+    width: 10px;
+    height: 4%;
+    border: 1px solid $secondary-color;
+    margin-left: 2px;
+    animation: blink 1.1s infinite ease;
+  }
+  &-fix:after {
+    margin-left: 3rem;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@import 'mobile';

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    />
+    <title>About Me</title>
+  </head>
+  <body id="bg-image" class="dark">
+    <div class="overlay" style="--x: 0; --y: 0">
+      <header>
+        <div class="menu-btn">
+          <div class="btn-line"></div>
+          <div class="btn-line"></div>
+          <div class="btn-line"></div>
+        </div>
+        <div class="menu-toggler">
+          <i class="fas fa-sun fa-2x"></i>
+          <i class="fas fa-moon fa-2x"></i>
+        </div>
+        <nav class="menu">
+          <div class="menu-branding">
+            <div class="portrait"></div>
+          </div>
+          <ul class="menu-nav">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item current">
+              <a href="#!" class="nav-link">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a href="work.html" class="nav-link">My Work</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link">How to Reach Me</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main id="about">
+        <h1 class="lg-heading">About <span class="text-secondary">Me</span></h1>
+        <h2 class="sm-heading">
+          <span
+            class="type-effect"
+            data-wait="300000"
+            data-speed='"fast"'
+            data-words='["Let me tell you a few things.."]'
+          ></span>
+        </h2>
+
+        <div class="about-info">
+          <img src="img/portrait.jpg" alt="Sodiey" class="bio-image" />
+          <div class="bio">
+            <h3 class="text-secondary">BIO</h3>
+            <p>
+              I have a keen interest in the world of web development, with an
+              eye to all levels of the process, from design and UX
+              considerations, to development. I develop my skills in and out the
+              office, with a focus on front-end.
+            </p>
+            <h4 class="sm-heading">
+              Frond-end scripts I speak: <br />
+              <span class="skills"
+                >HTML, CSS, Javascript, React, Redux, React-Native, Vue,
+                GraphQL, RESTfull API, AWS servises, jQuery, Material-UI, Sass,
+                Bootstrap, WordPress
+              </span>
+            </h4>
+            <h4 class="sm-heading">
+              Dev Tools I Use: <br />
+              <span class="skills"
+                >Git, GitHub, Bash, Npm, Jest, Chrome dev-tools, Figma, Trello,
+                Slack, VScode</span
+              >
+            </h4>
+          </div>
+        </div>
+
+        <div class="about-info" id="history">
+          <div class="job job-1">
+            <section class="job-header">
+              <h3 class="job-company">Skill Transfers</h3>
+              <h6 class="job-title">Front-end Developer</h6>
+              <p class="job-description">
+                SkillTransfers provides EduTech software solutions to
+                organizations and individuals. Some of my core activities are:
+              </p>
+            </section>
+            <div class="job-body">
+              <p>
+                Building Stable and maintainable codebases using React and Redux
+                and creating new features, functionalities and capabilities
+                like(fetch, create, delete, update) around data display and
+                visual dashboards using Redux-Sagas and GraphQL.
+              </p>
+            </div>
+            <div class="job-body">
+              <p>
+                Implementing third party libraries ( lodash, Styled Components,
+                i18next, moment, Stripe, React-router, Redux-Sagas, Formik, Yup
+                ).
+              </p>
+            </div>
+          </div>
+          <div class="job job-2">
+            <section class="job-header">
+              <h3 class="job-company">Skill Transfers</h3>
+              <h6 class="job-title">React-Native Developer</h6>
+              <p class="job-description">
+                I got the responsibility to develop the IOS and Android
+                application for Skill Transfers using React Native to help
+                people follow educational courses. Some of my core activities
+                are:
+              </p>
+            </section>
+            <div class="job-body">
+              <p>
+                Implement user authentication, navigation, sign in/out
+                functionality using AWS Amplify, Amazon Cognito and
+                react-navigation.
+              </p>
+            </div>
+            <div class="job-body">
+              <p>
+                Working closely with back-end engineer to design and tweak
+                GraphQL queries and Redux Sagas used by the frontend, as well as
+                Maintaining a responsive and adaptive user interface by using
+                the Platform and Dimension API.
+              </p>
+            </div>
+          </div>
+          <div class="job job-3">
+            <section class="job-header">
+              <h3 class="job-company">Freelance</h3>
+              <h6 class="job-title">WordPress Developer</h6>
+              <p class="job-description">
+                Working as a freelancer, building wordpress sites for small
+                businesses. Some of my core activities was:
+              </p>
+            </section>
+            <div class="job-body">
+              <p>
+                Designed, developed, and deployed company WordPress site, as
+                well as implement specialized plugins for SEO and custom
+                templates
+              </p>
+            </div>
+            <div class="job-body">
+              <p>
+                Working directly with client stakeholders to develop technical
+                solutions for business cases
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer id="main-footer">
+        Copyright &copy; <span id="copyRight-date"></span>
+      </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
